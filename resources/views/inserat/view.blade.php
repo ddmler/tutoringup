@@ -5,12 +5,10 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+                <div class="panel-heading">Inserat Einzelansicht</div>
 
                 <div class="panel-body">
-                    @foreach ($inserate as $inserat)
                         {{ $inserat->id }} - {{ $inserat->title }} - {{ $inserat->body }} - {{ $inserat->user->name }}<br>
-                    @endforeach
                 </div>
             </div>
         </div>

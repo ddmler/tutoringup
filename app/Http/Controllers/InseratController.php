@@ -7,13 +7,27 @@ use Illuminate\Http\Request;
 class InseratController extends Controller
 {
     /**
-     * Create a new controller instance.
+     * View inserate
      *
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    public function list($role = null, $subject = null)
     {
-        $this->middleware('auth');
+        $inserate = \App\Inserat::all();
+
+        return view('inserat.list', compact('inserate'));
+    }
+
+    /**
+     * View single inserat
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function view($id)
+    {
+		$inserat = \App\Inserat::find($id);
+
+        return view('inserat.view', compact('inserat'));
     }
 
     /**
@@ -21,8 +35,28 @@ class InseratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function createForm()
+    {
+        return view('inserat.create');
+    }
+
+    /**
+     * Saves a new inserat
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function createNew()
     {
-        return view('create_inserat');
+        return redirect()->route('home');
+    }
+
+    /**
+     * Show own inserate
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function viewOwn()
+    {
+        return view('inserat.own');
     }
 }

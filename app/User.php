@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function inserate() {
+        return $this->hasMany(Inserat::class);
+    }
+
+    public function uploads() {
+        return $this->hasMany(Upload::class);
+    }
 }

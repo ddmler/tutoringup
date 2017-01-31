@@ -16,7 +16,7 @@ class CreateInseratTable extends Migration
         Schema::create('inserate', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->foreign('creator')->references('id')->on('users');
+            $table->integer('user_id');
             $table->text('body');
             $table->timestamps();
         });

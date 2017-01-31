@@ -11,6 +11,15 @@ class InserateTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('inserate')->insert([
+        	'title' => 'test',
+        	'user_id' => 1,
+        	'body' => 'this is just a test.',
+        ]);
+        DB::table('inserate')->insert([
+            'title' => 'testzwei',
+            'user_id' => 2,
+            'body' => 'this is just another test.',
+        ]);
     }
 }
