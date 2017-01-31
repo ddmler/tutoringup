@@ -1,0 +1,14 @@
+language: php
+
+php:
+  - 7.0
+  - 7.1
+        
+sudo: false
+
+install:
+  - composer self-update --quiet
+  - COMPOSER_DISCARD_CHANGES=true composer --prefer-source update --no-interaction --no-progress
+
+script:
+  - vendor/bin/phpunit
