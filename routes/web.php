@@ -15,7 +15,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/inserate', 'InseratController@index');
+Route::get('/inserate', 'InseratController@index')->name('inserate');
 
 Route::get('/inserate/search/{role?}/{subject?}', 'InseratController@search');
 
@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/inserate/create', 'InseratController@create');
 
-	Route::get('/inserate/own', 'InseratController@showOwn');
+	Route::get('/inserate/own', 'InseratController@showOwn')->name('inserate_own');
 
 	Route::get('/inserate/{id}/edit', 'InseratController@edit');
 

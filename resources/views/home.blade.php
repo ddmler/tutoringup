@@ -14,16 +14,8 @@
                         </div>
                     @endif
                 
-                    @foreach ($inserate as $inserat)
-                        {{ $inserat->id }} - {{ $inserat->title }} - {{ $inserat->body }} - {{ $inserat->art }} - {{ $inserat->user->name }}<br>Kategorien: 
-                        @foreach ($inserat->studiengaenge as $studium)
-                            {{ $studium->name }}
-                        @endforeach
-                        @foreach ($inserat->schulfaecher as $fach)
-                            {{ $fach->name }}
-                        @endforeach
-                        <br><br>
-                    @endforeach
+                    <a href="inserate/" class="btn btn-primary btn-lg">Inserate</a>
+                    <a href="altklausuren/" class="btn btn-default btn-lg">Altklausuren</a>
                 </div>
             </div>
         </div>
