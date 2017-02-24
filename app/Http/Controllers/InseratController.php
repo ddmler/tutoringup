@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Inserat;
 
 class InseratController extends Controller
 {
@@ -11,11 +13,25 @@ class InseratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function list($role = null, $subject = null)
+    public function index()
     {
-        $inserate = \App\Inserat::all();
+        $inserate = Inserat::all();
 
-        return view('inserat.list', compact('inserate'));
+        dd($inserate);
+
+        return view('inserat.index', compact('inserate'));
+    }
+
+    /**
+     * Search inserate
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search($role = null, $subject = null)
+    {
+        $inserate = Inserat::all();
+
+        return view('inserat.index', compact('inserate'));
     }
 
     /**
@@ -23,9 +39,9 @@ class InseratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function view($id)
+    public function show($id)
     {
-		$inserat = \App\Inserat::find($id);
+		$inserat = Inserat::find($id);
 
         return view('inserat.view', compact('inserat'));
     }
@@ -35,7 +51,7 @@ class InseratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createForm()
+    public function create()
     {
         return view('inserat.create');
     }
@@ -43,11 +59,22 @@ class InseratController extends Controller
     /**
      * Saves a new inserat
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function createNew()
+    public function store(Request $request)
     {
-        return redirect()->route('home');
+        $this->validate(request(), [
+            'title' => 'required|max:255|min:3',
+            'body' => 'required|min:10'
+        ]);
+
+        Inserat::create([
+            'title' => request('title'),
+            'user_id' => Auth::id(),
+            'body' => request('body')
+        ]);
+        return redirect()->route('home')->with('status', 'Inserat erfolgreich angelegt.');
     }
 
     /**
@@ -55,8 +82,42 @@ class InseratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function viewOwn()
+    public function showOwn()
     {
         return view('inserat.own');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

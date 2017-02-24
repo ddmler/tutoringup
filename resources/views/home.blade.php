@@ -8,8 +8,21 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                
                     @foreach ($inserate as $inserat)
-                        {{ $inserat->id }} - {{ $inserat->title }} - {{ $inserat->body }} - {{ $inserat->user->name }}<br>
+                        {{ $inserat->id }} - {{ $inserat->title }} - {{ $inserat->body }} - {{ $inserat->art }} - {{ $inserat->user->name }}<br>Kategorien: 
+                        @foreach ($inserat->studiengaenge as $studium)
+                            {{ $studium->name }}
+                        @endforeach
+                        @foreach ($inserat->schulfaecher as $fach)
+                            {{ $fach->name }}
+                        @endforeach
+                        <br><br>
                     @endforeach
                 </div>
             </div>

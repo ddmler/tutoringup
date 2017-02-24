@@ -15,18 +15,28 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/inserate/{role?}/{subject?}', 'InseratController@list');
+Route::get('/inserate', 'InseratController@index');
 
-Route::get('/inserat/{id}', 'InseratController@view');
-
+Route::get('/inserate/search/{role?}/{subject?}', 'InseratController@search');
 
 // Loggedin Routes
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::get('/new_inserat', 'InseratController@createForm');
+	Route::post('/inserate', 'InseratController@store');
 
-	Route::post('/new_inserat', 'InseratController@createNew');
+	Route::get('/inserate/create', 'InseratController@create');
 
-	Route::get('/eigene_inserate', 'InseratController@viewOwn');
+	Route::get('/inserate/own', 'InseratController@showOwn');
+
+	Route::get('/inserate/{id}/edit', 'InseratController@edit');
+
+	Route::patch('/inserate/{id}', 'InseratController@update');
+
+	Route::delete('/inserate/{id}', 'InseratController@destroy');
 
 });
+
+Route::get('/inserate/{id}', 'InseratController@show');
+
+
+
