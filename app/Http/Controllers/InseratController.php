@@ -17,7 +17,7 @@ class InseratController extends Controller
      */
     public function index()
     {
-        $inserate = Inserat::orderBy('created_at', 'desc')->get();
+        $inserate = Inserat::orderBy('created_at', 'desc')->paginate(10);
 
         return view('inserat.index', compact('inserate'));
     }
@@ -30,12 +30,15 @@ class InseratController extends Controller
     public function search($art = null, $role = null, $subject = null)
     {
         $list = Inserat::orderBy('created_at', 'desc');
+
+        // Filter Suche/Biete
         if ($art == "suche") {
             $list->where('art', 0);
         } elseif ($art == "biete") {
             $list->where('art', 1);
         }
 
+        // Filter Student/Schueler && Studiengang/Fach
         if ($role == "student") {
 
 
@@ -58,7 +61,7 @@ class InseratController extends Controller
             }
         }
 
-        $inserate = $list->get();
+        $inserate = $list->paginate(10);
 
         return view('inserat.index', compact('inserate'));
     }
@@ -100,8 +103,8 @@ class InseratController extends Controller
             'title' => 'required|max:255|min:3',
             'body' => 'required|min:10',
             'art' => 'required|boolean',
-            'schulfaecher' => 'nullable|array',
-            'studiengaenge' => 'nullable|array',
+            'schulfaecher' => 'array|required_without:studiengaenge',
+            'studiengaenge' => 'array|required_without:schulfaecher',
         ]);
 
         $inserat = Inserat::create([
@@ -111,11 +114,16 @@ class InseratController extends Controller
             'art' => request('art'),
         ]);
 
-        foreach (request('studiengaenge') as $studium) {
-            $inserat->studiengaenge()->attach($studium);
+        if (request('studiengaenge') !== null) {
+            foreach (request('studiengaenge') as $studium) {
+                $inserat->studiengaenge()->attach($studium);
+            }
         }
-        foreach (request('schulfaecher') as $fach) {
-            $inserat->schulfaecher()->attach($fach);
+        
+        if (request('schulfaecher') !== null) {
+            foreach (request('schulfaecher') as $fach) {
+                $inserat->schulfaecher()->attach($fach);
+            }
         }
 
         return redirect()->route('inserate')->with('status', 'Inserat erfolgreich angelegt.');
@@ -128,7 +136,7 @@ class InseratController extends Controller
      */
     public function showOwn()
     {
-        $inserate = Inserat::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
+        $inserate = Inserat::where('user_id', Auth::id())->orderBy('created_at', 'desc')->paginate(10);
 
         return view('inserat.own', compact('inserate'));
     }
@@ -142,10 +150,15 @@ class InseratController extends Controller
     public function edit($id)
     {
         $inserat = Inserat::findOrFail($id);
-        $studiengaenge = Studiengang::orderBy('name')->get();
-        $schulfaecher = Schulfach::orderBy('name')->get();
 
-        return view('inserat.edit', compact('inserat', 'studiengaenge', 'schulfaecher'));
+        if ($inserat->user_id == Auth::id()) { //check if user is allowed to edit this post
+            $studiengaenge = Studiengang::orderBy('name')->get();
+            $schulfaecher = Schulfach::orderBy('name')->get();
+
+            return view('inserat.edit', compact('inserat', 'studiengaenge', 'schulfaecher'));            
+        }
+
+        abort(403); //Forbidden action
     }
 
     /**
@@ -167,25 +180,29 @@ class InseratController extends Controller
 
         $inserat = Inserat::findOrFail($id);
 
-        $inserat->title = request('title');
-        $inserat->body = request('body');
-        $inserat->art = request('art');
+        if ($inserat->user_id == Auth::id()) { //check if user is allowed to edit this post
+            $inserat->title = request('title');
+            $inserat->body = request('body');
+            $inserat->art = request('art');
 
-        if (request('studiengaenge') === null) {
-            $inserat->studiengaenge()->detach();
-        } else {
-            $inserat->studiengaenge()->sync(request('studiengaenge'));
+            if (request('studiengaenge') === null) {
+                $inserat->studiengaenge()->detach();
+            } else {
+                $inserat->studiengaenge()->sync(request('studiengaenge'));
+            }
+
+            if (request('schulfaecher') === null) {
+                $inserat->schulfaecher()->detach();
+            } else {
+                $inserat->schulfaecher()->sync(request('schulfaecher'));
+            }
+
+            $inserat->save();
+
+            return redirect()->route('inserate_own')->with('status', 'Inserat erfolgreich bearbeitet.');
         }
 
-        if (request('schulfaecher') === null) {
-            $inserat->schulfaecher()->detach();
-        } else {
-            $inserat->schulfaecher()->sync(request('schulfaecher'));
-        }
-
-        $inserat->save();
-
-        return redirect()->route('inserate_own')->with('status', 'Inserat erfolgreich bearbeitet.');
+        abort(403); //Forbidden action
     }
 
     /**
@@ -197,8 +214,13 @@ class InseratController extends Controller
     public function destroy($id)
     {
         $inserat = Inserat::findOrFail($id);
-        $inserat->delete();
 
-        return redirect()->route('inserate_own')->with('status', 'Inserat erfolgreich gelöscht.');
+        if ($inserat->user_id == Auth::id()) { //check if user is allowed to delete this post
+            $inserat->delete();
+
+            return redirect()->route('inserate_own')->with('status', 'Inserat erfolgreich gelöscht.');
+        }
+
+        abort(403); //Forbidden action
     }
 }

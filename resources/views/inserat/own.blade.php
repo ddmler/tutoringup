@@ -30,7 +30,9 @@
                             <input type="submit" class="btn btn-danger" value="Löschen">
                         </form>
                         <br>
-                    @endforeach                </div>
+                    @endforeach
+                    {{ $inserate->links() }}
+                </div>
             </div>
         </div>
     </div>

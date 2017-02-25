@@ -24,6 +24,8 @@
                         @endforeach
                         <br><br>
                     @endforeach
+
+                    {{ $inserate->links() }}
                 </div>
             </div>
         </div>
