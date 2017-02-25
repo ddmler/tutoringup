@@ -74,8 +74,9 @@ class InseratController extends Controller
     public function show($id)
     {
 		$inserat = Inserat::findOrFail($id);
+        $user_id = Auth::id();
 
-        return view('inserat.view', compact('inserat'));
+        return view('inserat.view', compact('inserat', 'user_id'));
     }
 
     /**

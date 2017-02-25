@@ -5,10 +5,20 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Inserat Einzelansicht</div>
+                <div class="panel-heading">{{ $inserat->title }}</div>
 
                 <div class="panel-body">
-                        {{ $inserat->id }} - {{ $inserat->title }} - {{ $inserat->body }} - {{ $inserat->user->name }}<br>
+                        {{ $inserat->body }}
+
+                        <br><br>von: {{ $inserat->user->name }} ({{ $inserat->created_at }})<br>
+                        @if ($inserat->user_id == $user_id)
+                            <a href="{{ $inserat->id }}/edit" class="btn btn-default">Bearbeiten</a>
+                            <form method="POST" action="{{ $inserat->id }}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <input type="submit" class="btn btn-danger" value="Löschen">
+                            </form>
+                        @endif
                 </div>
             </div>
         </div>

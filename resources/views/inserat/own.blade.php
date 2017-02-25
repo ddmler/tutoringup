@@ -15,7 +15,17 @@
                     @endif
                 
                     @foreach ($inserate as $inserat)
-                        {{ $inserat->id }} - {{ $inserat->title }} - {{ $inserat->body }} - {{ $inserat->art }} - {{ $inserat->user->name }}<br>Kategorien: 
+                        <div class="inserate_list">
+                        @if ($inserat->art == 0)
+                            Suche Tutor: 
+                        @elseif ($inserat->art == 1)
+                            Biete Tutor:
+                        @endif
+                        <a href="/inserate/{{ $inserat->id }}">{{ $inserat->title }}</a> (Erstellt: {{ $inserat->created_at }})
+                        <hr>
+                        {{ str_limit($inserat->body, 400) }}
+                        <br>
+                        von: {{ $inserat->user->name }}<br>Kategorien: 
                         @foreach ($inserat->studiengaenge as $studium)
                             {{ $studium->name }}
                         @endforeach
@@ -29,7 +39,7 @@
                             {{ method_field('DELETE') }}
                             <input type="submit" class="btn btn-danger" value="Löschen">
                         </form>
-                        <br>
+                        </div>
                     @endforeach
                     {{ $inserate->links() }}
                 </div>
