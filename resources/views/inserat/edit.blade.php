@@ -19,7 +19,7 @@
                       </div>
                   @endif
                 
-                    <form method="POST" action="/inserate">
+                    <form method="POST" action="/inserate/{{ $inserat->id }}">
                       {{ csrf_field() }}
                       <div class="form-group">
                         <div class="radio">
@@ -57,7 +57,7 @@
                         <textarea type="password" class="form-control" name="body" id="body" rows="10" placeholder="Beschreibe möglichst genau, was du benötigst." required>{{ $inserat->body }}</textarea>
                       </div>
 
-                      {{ method_field('PUT') }}
+                      {{ method_field('PATCH') }}
                       <button type="submit" class="btn btn-primary">Inserat bearbeiten</button>
                     </form>
                 </div>

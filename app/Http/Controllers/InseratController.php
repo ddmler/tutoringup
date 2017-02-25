@@ -27,9 +27,38 @@ class InseratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search($role = null, $subject = null)
+    public function search($art = null, $role = null, $subject = null)
     {
-        $inserate = Inserat::orderBy('created_at', 'desc')->get();
+        $list = Inserat::orderBy('created_at', 'desc');
+        if ($art == "suche") {
+            $list->where('art', 0);
+        } elseif ($art == "biete") {
+            $list->where('art', 1);
+        }
+
+        if ($role == "student") {
+
+
+            if ($subject !== null) {
+                $list->whereHas('studiengaenge',function($q) use($subject)
+                {
+                    $q->where('studiengang_id', $subject);
+                });
+            }
+        }
+
+        if ($role == "schueler") {
+
+
+            if ($subject !== null) {
+                $list->whereHas('schulfaecher',function($q) use($subject)
+                {
+                    $q->where('schulfach_id', $subject);
+                });
+            }
+        }
+
+        $inserate = $list->get();
 
         return view('inserat.index', compact('inserate'));
     }
@@ -128,7 +157,35 @@ class InseratController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate(request(), [
+            'title' => 'required|max:255|min:3',
+            'body' => 'required|min:10',
+            'art' => 'required|boolean',
+            'schulfaecher' => 'nullable|array',
+            'studiengaenge' => 'nullable|array',
+        ]);
+
+        $inserat = Inserat::findOrFail($id);
+
+        $inserat->title = request('title');
+        $inserat->body = request('body');
+        $inserat->art = request('art');
+
+        if (request('studiengaenge') === null) {
+            $inserat->studiengaenge()->detach();
+        } else {
+            $inserat->studiengaenge()->sync(request('studiengaenge'));
+        }
+
+        if (request('schulfaecher') === null) {
+            $inserat->schulfaecher()->detach();
+        } else {
+            $inserat->schulfaecher()->sync(request('schulfaecher'));
+        }
+
+        $inserat->save();
+
+        return redirect()->route('inserate_own')->with('status', 'Inserat erfolgreich bearbeitet.');
     }
 
     /**

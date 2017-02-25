@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::get('/inserate', 'InseratController@index')->name('inserate');
 
-Route::get('/inserate/search/{role?}/{subject?}', 'InseratController@search');
+Route::get('/inserate/search/{art?}/{role?}/{subject?}', 'InseratController@search');
 
 // Loggedin Routes
 Route::group(['middleware' => 'auth'], function () {
