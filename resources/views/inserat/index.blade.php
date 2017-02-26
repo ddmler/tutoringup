@@ -24,11 +24,11 @@
                         <a href="schueler/">Schüler</a>
                     @elseif ($role == "student")
                         @foreach ($studiengaenge as $studium)
-                            <a href="{{ $studium->id }}">{{ $studium->name }}</option>
+                            <a href="{{ $studium->id }}">{{ $studium->name }}</a>
                         @endforeach
                     @elseif ($role == "schueler")
                         @foreach ($schulfaecher as $fach)
-                            <a href="{{ $fach->id }}">{{ $fach->name }}</option>
+                            <a href="{{ $fach->id }}">{{ $fach->name }}</a>
                         @endforeach
                     @endif
                     </div>

@@ -44,7 +44,7 @@ class InseratController extends Controller
 
         // Filter Student/Schueler && Studiengang/Fach
         if ($role == "student") {
-
+            $list->has('studiengaenge');
 
             if ($subject !== null) {
                 $list->whereHas('studiengaenge',function($q) use($subject)
@@ -55,7 +55,7 @@ class InseratController extends Controller
         }
 
         if ($role == "schueler") {
-
+            $list->has('schulfaecher');
 
             if ($subject !== null) {
                 $list->whereHas('schulfaecher',function($q) use($subject)
