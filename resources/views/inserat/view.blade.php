@@ -8,7 +8,7 @@
                 <div class="panel-heading">{{ $inserat->title }}</div>
 
                 <div class="panel-body">
-                        {{ $inserat->body }}
+                        {!! nl2br(e($inserat->body)) !!}
 
                         <br><br>von: {{ $inserat->user->name }} ({{ $inserat->created_at }})<br>
                         @if ($inserat->user_id == $user_id)

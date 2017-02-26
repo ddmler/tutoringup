@@ -23,7 +23,7 @@
                         @endif
                         <a href="/inserate/{{ $inserat->id }}">{{ $inserat->title }}</a> (Erstellt: {{ $inserat->created_at }})
                         <hr>
-                        {{ str_limit($inserat->body, 400) }}
+                        {!! str_limit(nl2br(e($inserat->body)), 300) !!}
                         <br>
                         von: {{ $inserat->user->name }}<br>Kategorien: 
                         @foreach ($inserat->studiengaenge as $studium)

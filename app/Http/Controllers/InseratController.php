@@ -19,7 +19,11 @@ class InseratController extends Controller
     {
         $inserate = Inserat::orderBy('created_at', 'desc')->paginate(10);
 
-        return view('inserat.index', compact('inserate'));
+        $art = null; // Search filter are null on index
+        $role = null;
+        $subject = null;
+
+        return view('inserat.index', compact('inserate', 'art', 'role', 'subject'));
     }
 
     /**
@@ -27,7 +31,7 @@ class InseratController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search($art = null, $role = null, $subject = null)
+    public function filter($art = null, $role = null, $subject = null)
     {
         $list = Inserat::orderBy('created_at', 'desc');
 
@@ -63,7 +67,10 @@ class InseratController extends Controller
 
         $inserate = $list->paginate(10);
 
-        return view('inserat.index', compact('inserate'));
+        $studiengaenge = Studiengang::orderBy('name')->get();
+        $schulfaecher = Schulfach::orderBy('name')->get();
+
+        return view('inserat.index', compact('inserate', 'art', 'role', 'subject', 'studiengaenge', 'schulfaecher'));
     }
 
     /**

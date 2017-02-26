@@ -15,7 +15,22 @@
                     @endif
                 
                     <div class="filter_list">
-                    Filter going here ...
+                    Zeige nur: <br>
+                    @if (!$art)
+                        <a href="/inserate/filter/suche/">Suche Tutor</a>
+                        <a href="/inserate/filter/biete/">Biete Tutor</a>
+                    @elseif ($art and !$role)
+                        <a href="student/">Student</a>
+                        <a href="schueler/">Schüler</a>
+                    @elseif ($role == "student")
+                        @foreach ($studiengaenge as $studium)
+                            <a href="{{ $studium->id }}">{{ $studium->name }}</option>
+                        @endforeach
+                    @elseif ($role == "schueler")
+                        @foreach ($schulfaecher as $fach)
+                            <a href="{{ $fach->id }}">{{ $fach->name }}</option>
+                        @endforeach
+                    @endif
                     </div>
 
                     @foreach ($inserate as $inserat)
@@ -27,7 +42,7 @@
                         @endif
                         <a href="/inserate/{{ $inserat->id }}">{{ $inserat->title }}</a> (Erstellt: {{ $inserat->created_at }})
                         <hr>
-                        {{ str_limit($inserat->body, 400) }}
+                        {!! str_limit(nl2br(e($inserat->body)), 300) !!}
                         <br>
                         von: {{ $inserat->user->name }}<br>Kategorien: 
                         @foreach ($inserat->studiengaenge as $studium)
