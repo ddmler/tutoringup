@@ -70,7 +70,10 @@ class InseratController extends Controller
         $studiengaenge = Studiengang::orderBy('name')->get();
         $schulfaecher = Schulfach::orderBy('name')->get();
 
-        return view('inserat.index', compact('inserate', 'art', 'role', 'subject', 'studiengaenge', 'schulfaecher'));
+        $studium = Studiengang::all();
+        $schule = Schulfach::all();
+
+        return view('inserat.index', compact('inserate', 'art', 'role', 'subject', 'studiengaenge', 'schulfaecher', 'studium', 'schule'));
     }
 
     /**

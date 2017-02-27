@@ -6,6 +6,18 @@
 <div class="panel-body">
     @include('layouts.success')
 
+    @if ($art)
+        Aktueller Filter:
+        <a href="/inserate/">{{ ($art == "suche") ? "Suche Tutor" : "Biete Tutor" }}</a>
+        @if ($role)
+            - <a href="/inserate/filter/{{ $art }}">{{ ($role == "student") ? "Student" : "Schüler" }}</a>
+        @endif
+        @if ($subject)
+            - {{ ($role == "student") ? $studium[$subject-1]->name : $schule[$subject-1]->name }}
+        @endif
+    @endif
+
+
     <div class="filter_list">
     Zeige nur: <br>
     @if (!$art)
@@ -24,6 +36,7 @@
         @endforeach
     @endif
     </div>
+
 
     @foreach ($inserate as $inserat)
         <div class="inserate_list">
