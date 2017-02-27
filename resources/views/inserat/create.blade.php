@@ -20,13 +20,13 @@
       <div class="form-group">
         <div class="radio">
           <label>
-            <input type="radio" name="art" id="suche" value="0" checked>
+            <input type="radio" name="art" id="suche" value="0" @if (old('art') != 1) checked @endif>
             Suche Tutor
           </label>
         </div>
         <div class="radio">
           <label>
-            <input type="radio" name="art" id="biete" value="1">
+            <input type="radio" name="art" id="biete" value="1" @if (old('art') == 1) checked @endif>
             Biete Tutor
           </label>
         </div>
@@ -34,23 +34,23 @@
         Kategorien Studium: <br>
         <select multiple class="form-control" name="studiengaenge[]" size="5">
         @foreach ($studiengaenge as $studium)
-            <option value="{{ $studium->id }}">{{ $studium->name }}</option>
+            <option value="{{ $studium->id }}" @if (old('studiengaenge') !== null && in_array($studium->id, old('studiengaenge'))) selected="selected" @endif>{{ $studium->name }}</option>
         @endforeach
         </select>
 
         Kategorien Schule: <br>
         <select multiple class="form-control" name="schulfaecher[]" size="5">
         @foreach ($schulfaecher as $fach)
-            <option value="{{ $fach->id }}">{{ $fach->name }}</option>
+            <option value="{{ $fach->id }}" @if (old('schulfaecher') !== null && in_array($fach->id, old('schulfaecher'))) selected="selected" @endif>{{ $fach->name }}</option>
         @endforeach
         </select>
 
         <label for="title">Titel</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="Ein aussagekräftiger Titel" required>
+        <input type="text" class="form-control" name="title" id="title" placeholder="Ein aussagekräftiger Titel" value="{{ old('title') }}" required>
       </div>
       <div class="form-group">
         <label for="body">Inhalt</label>
-        <textarea type="password" class="form-control" name="body" id="body" rows="10" placeholder="Beschreibe möglichst genau, was du benötigst." required></textarea>
+        <textarea type="password" class="form-control" name="body" id="body" rows="10" placeholder="Beschreibe möglichst genau, was du benötigst oder anbietest." required>{{ old('body') }}</textarea>
       </div>
       <button type="submit" class="btn btn-primary">Inserat veröffentlichen</button>
     </form>

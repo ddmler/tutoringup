@@ -34,14 +34,14 @@
         Kategorien Studium: <br>
         <select multiple class="form-control" name="studiengaenge[]" size="5">
         @foreach ($studiengaenge as $studium)
-            <option value="{{ $studium->id }}">{{ $studium->name }}</option>
+            <option value="{{ $studium->id }}" @if (in_array($studium->id, $inserat->studiengaenge->pluck('id')->toArray())) selected="selected" @endif>{{ $studium->name }}</option>
         @endforeach
         </select>
 
         Kategorien Schule: <br>
         <select multiple class="form-control" name="schulfaecher[]" size="5">
         @foreach ($schulfaecher as $fach)
-            <option value="{{ $fach->id }}">{{ $fach->name }}</option>
+            <option value="{{ $fach->id }}" @if (in_array($fach->id, $inserat->schulfaecher->pluck('id')->toArray())) selected="selected" @endif>{{ $fach->name }}</option>
         @endforeach
         </select>
 
