@@ -4,11 +4,7 @@
 <div class="panel-heading">Eigene Inserate</div>
 
 <div class="panel-body">
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
+    @include('layouts.success')
 
     @foreach ($inserate as $inserat)
         <div class="inserate_list">

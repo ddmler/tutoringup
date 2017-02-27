@@ -4,11 +4,7 @@
 <div class="panel-heading">Inserat Übersicht</div>
 
 <div class="panel-body">
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
+    @include('layouts.success')
 
     <div class="filter_list">
     Zeige nur: <br>
