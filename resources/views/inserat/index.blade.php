@@ -24,18 +24,18 @@
         <a href="/inserate/filter/suche/">Suche Tutor</a>
         <a href="/inserate/filter/biete/">Biete Tutor</a>
     @elseif ($art and !$role)
-        <a href="student/">Student</a>
-        <a href="schueler/">Schüler</a>
+        <a href="/inserate/filter/{{ $art }}/student/">Student</a>
+        <a href="/inserate/filter/{{ $art }}/schueler/">Schüler</a>
     @elseif ($role == "student")
         @foreach ($studiengaenge as $studium)
-            <a href="{{ $studium->id }}">{{ $studium->name }}</a>
+            <a href="/inserate/filter/{{ $art }}/student/{{ $studium->id }}">{{ $studium->name }}</a>
         @endforeach
     @elseif ($role == "schueler")
         @foreach ($schulfaecher as $fach)
-            <a href="{{ $fach->id }}">{{ $fach->name }}</a>
+            <a href="/inserate/filter/{{ $art }}/schueler/{{ $fach->id }}">{{ $fach->name }}</a>
         @endforeach
     @endif
-    </div>
+    </div><br>
 
 
     @foreach ($inserate as $inserat)

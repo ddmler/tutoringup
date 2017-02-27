@@ -38,5 +38,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/inserate/{id}', 'InseratController@show');
 
-
+Route::get('/altklausuren/', 'UploadController@index');
 

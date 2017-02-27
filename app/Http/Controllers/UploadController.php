@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Upload;
 
 class UploadController extends Controller
 {
@@ -13,7 +14,9 @@ class UploadController extends Controller
      */
     public function index()
     {
-        //
+        $uploads = Upload::orderBy('created_at', 'desc')->paginate(10);
+
+        return view('upload.index', compact('uploads'));
     }
 
     /**
