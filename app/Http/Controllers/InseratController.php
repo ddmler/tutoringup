@@ -67,10 +67,10 @@ class InseratController extends Controller
 
         $inserate = $list->paginate(10);
 
-        $studiengaenge = Studiengang::orderBy('name')->get();
+        $studiengaenge = Studiengang::orderBy('name')->get(); // Sorted for list of filter
         $schulfaecher = Schulfach::orderBy('name')->get();
 
-        $studium = Studiengang::all();
+        $studium = Studiengang::all(); // to get the name of the current filter
         $schule = Schulfach::all();
 
         return view('inserat.index', compact('inserate', 'art', 'role', 'subject', 'studiengaenge', 'schulfaecher', 'studium', 'schule'));

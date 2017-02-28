@@ -6,9 +6,21 @@
 <div class="panel-body">
     @include('layouts.success')
 
+    Aktueller Filter: 
+    @if ($subject)
+        {{ $studium[$subject-1]->name }}
+    @endif
+
+    <div class="filter_list">
+	    Zeige nur: <br>
+	    @foreach ($studiengaenge as $studium)
+	        <a href="/altklausuren/{{ $studium->id }}">{{ $studium->name }}</a>
+	    @endforeach
+    </div><br>
+
     @foreach ($uploads as $upload)
         <div class="upload_list">
-            <a href="/altklausur/{{ $upload->filename }}" target="_blank">{{ $upload->title }}</a>
+            <a href="/{{ $upload->filename }}" target="_blank">{{ $upload->title }}</a>
         </div>
     @endforeach
 

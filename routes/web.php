@@ -22,6 +22,14 @@ Route::get('/inserate/filter/{art?}/{role?}/{subject?}', 'InseratController@filt
 // Loggedin Routes
 Route::group(['middleware' => 'auth'], function () {
 
+	Route::get('/altklausuren/own', 'UploadController@showOwn')->name('upload_own');
+
+	Route::delete('/altklausuren/{id}', 'UploadController@destroy');
+
+	Route::post('/altklausuren', 'UploadController@store');
+
+	Route::get('/altklausuren/create', 'UploadController@create');
+
 	Route::post('/inserate', 'InseratController@store');
 
 	Route::get('/inserate/create', 'InseratController@create');
@@ -38,5 +46,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::get('/inserate/{id}', 'InseratController@show');
 
-Route::get('/altklausuren/', 'UploadController@index');
+Route::get('/altklausuren/{subject?}', 'UploadController@index')->name('uploads');
 

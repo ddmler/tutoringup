@@ -14,12 +14,12 @@ class UploadsTableSeeder extends Seeder
         DB::table('uploads')->insert([
         	'title' => 'Testimage',
         	'user_id' => 1,
-        	'filename' => '1.jpg',
+        	'filename' => 'altklausur/1.jpg',
         ]);
         DB::table('uploads')->insert([
             'title' => 'testzwei',
             'user_id' => 2,
-            'filename' => '2.png',
+            'filename' => 'altklausur/2.png',
         ]);
 
         DB::table('studiengang_upload')->insert([

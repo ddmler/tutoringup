@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Upload;
+use App\Studiengang;
 
 class UploadController extends Controller
 {
@@ -12,11 +14,23 @@ class UploadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($subject = null)
     {
-        $uploads = Upload::orderBy('created_at', 'desc')->paginate(10);
+        $list = Upload::orderBy('created_at', 'desc');
+        
+        if ($subject !== null) {
+            $list->whereHas('studiengaenge',function($q) use($subject)
+                {
+                    $q->where('studiengang_id', $subject);
+                });
+        }
+        $uploads = $list->paginate(10);
 
-        return view('upload.index', compact('uploads'));
+        $studium = Studiengang::all(); // to get the name of the current filter
+
+        $studiengaenge = Studiengang::orderBy('name')->get(); // Sorted for List to choose
+
+        return view('upload.index', compact('uploads', 'studium', 'studiengaenge', 'subject'));
     }
 
     /**
@@ -26,7 +40,9 @@ class UploadController extends Controller
      */
     public function create()
     {
-        //
+        $studiengaenge = Studiengang::orderBy('name')->get();
+
+        return view('upload.create', compact('studiengaenge'));
     }
 
     /**
@@ -37,41 +53,39 @@ class UploadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(), [
+            'title' => 'required|max:255|min:3',
+            'upload_file' => 'required|file|mimes:jpeg,png,pdf',
+            'studiengaenge' => 'required|array',
+        ]);
+
+        $path = request()->file('upload_file')->store('altklausur', 'public');
+
+
+
+        $inserat = Upload::create([
+            'title' => request('title'),
+            'user_id' => Auth::id(),
+            'filename' => $path,
+        ]);
+
+        foreach (request('studiengaenge') as $studium) {
+            $inserat->studiengaenge()->attach($studium);
+        }
+
+        return redirect()->route('uploads')->with('status', 'Altklausur erfolgreich hochgeladen.');
     }
 
     /**
-     * Display the specified resource.
+     * Show own inserate
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showOwn()
     {
-        //
-    }
+        $uploads = Upload::where('user_id', Auth::id())->orderBy('created_at', 'desc')->paginate(10);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return view('upload.own', compact('uploads'));
     }
 
     /**
@@ -82,6 +96,14 @@ class UploadController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $upload = Upload::findOrFail($id);
+
+        if ($upload->user_id == Auth::id()) { //check if user is allowed to delete this post
+            $upload->delete();
+
+            return redirect()->route('upload_own')->with('status', 'Altklausur erfolgreich gelöscht.');
+        }
+
+        abort(403); //Forbidden action
     }
 }
