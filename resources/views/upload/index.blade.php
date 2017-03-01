@@ -5,9 +5,9 @@
 
 <div class="panel-body">
     @include('layouts.success')
-
-    Aktueller Filter: 
+ 
     @if ($subject)
+        Aktueller Filter:
         {{ $studium[$subject-1]->name }}
     @endif
 

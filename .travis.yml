@@ -11,4 +11,4 @@ install:
   - COMPOSER_DISCARD_CHANGES=true composer --prefer-source update --no-interaction --no-progress
 
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --testsuite "Unit Tests"

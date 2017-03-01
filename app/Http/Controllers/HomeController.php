@@ -14,8 +14,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $inserate = \App\Inserat::all();
-
-        return view('home', compact('inserate'));
+        return view('home');
     }
 }
