@@ -6,7 +6,7 @@
 <div class="panel-body">
     @include('layouts.success')
 
-    @foreach ($uploads as $upload)
+    @forelse ($uploads as $upload)
         <div class="upload_list">
             <a href="/{{ $upload->filename }}" target="_blank">{{ $upload->title }}</a>
             <form method="POST" action="{{ $upload->id }}">
@@ -15,7 +15,9 @@
             <input type="submit" class="btn btn-danger" value="Löschen">
         </form>
         </div>
-    @endforeach
+    @empty
+        <p>Keine eigenen Altklausuren vorhanden.</p>
+    @endforelse
 
     {{ $uploads->links() }}
 </div>

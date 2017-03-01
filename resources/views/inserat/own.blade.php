@@ -6,7 +6,7 @@
 <div class="panel-body">
     @include('layouts.success')
 
-    @foreach ($inserate as $inserat)
+    @forelse ($inserate as $inserat)
         <div class="inserate_list">
         @if ($inserat->art == 0)
             Suche Tutor: 
@@ -32,7 +32,9 @@
             <input type="submit" class="btn btn-danger" value="Löschen">
         </form>
         </div>
-    @endforeach
+    @empty
+        <p>Keine eigenen Inserate vorhanden.</p>
+    @endforelse
     {{ $inserate->links() }}
 </div>
 @endsection

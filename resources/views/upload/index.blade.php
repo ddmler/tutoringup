@@ -18,11 +18,13 @@
 	    @endforeach
     </div><br>
 
-    @foreach ($uploads as $upload)
+    @forelse ($uploads as $upload)
         <div class="upload_list">
             <a href="/{{ $upload->filename }}" target="_blank">{{ $upload->title }}</a>
         </div>
-    @endforeach
+    @empty
+        <p>Keine Altklausuren vorhanden.</p>
+    @endforelse
 
     {{ $uploads->links() }}
 </div>

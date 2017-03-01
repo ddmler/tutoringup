@@ -38,7 +38,7 @@
     </div><br>
 
 
-    @foreach ($inserate as $inserat)
+    @forelse ($inserate as $inserat)
         <div class="inserate_list">
         @if ($inserat->art == 0)
             Suche Tutor: 
@@ -57,7 +57,9 @@
             {{ $fach->name }}
         @endforeach
         </div>
-    @endforeach
+    @empty
+        <p>Keine Inserate vorhanden.</p>
+    @endforelse
 
     {{ $inserate->links() }}
 </div>
