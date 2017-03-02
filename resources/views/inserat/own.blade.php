@@ -7,7 +7,7 @@
     @include('layouts.success')
 
     @forelse ($inserate as $inserat)
-        <div class="inserate_list">
+        <div class="inserate-list">
         @if ($inserat->art == 0)
             Suche Tutor: 
         @elseif ($inserat->art == 1)

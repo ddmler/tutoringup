@@ -14,7 +14,7 @@
     <div class="filter_list">
 	    Zeige nur: <br>
 	    @foreach ($studiengaenge as $studium)
-	        <a href="/altklausuren/{{ $studium->id }}">{{ $studium->name }}</a>
+	        <a href="/altklausuren/{{ $studium->id }}" class="btn btn-default">{{ $studium->name }}</a>
 	    @endforeach
     </div><br>
 

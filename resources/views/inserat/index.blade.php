@@ -21,35 +21,35 @@
     <div class="filter_list">
     Zeige nur: <br>
     @if (!$art)
-        <a href="/inserate/filter/suche/">Suche Tutor</a>
-        <a href="/inserate/filter/biete/">Biete Tutor</a>
+        <a href="/inserate/filter/suche/" class="btn btn-default">Suche Tutor</a>
+        <a href="/inserate/filter/biete/" class="btn btn-default">Biete Tutor</a>
     @elseif ($art and !$role)
-        <a href="/inserate/filter/{{ $art }}/student/">Student</a>
-        <a href="/inserate/filter/{{ $art }}/schueler/">Schüler</a>
+        <a href="/inserate/filter/{{ $art }}/student/" class="btn btn-default">Student</a>
+        <a href="/inserate/filter/{{ $art }}/schueler/" class="btn btn-default">Schüler</a>
     @elseif ($role == "student")
         @foreach ($studiengaenge as $studium)
-            <a href="/inserate/filter/{{ $art }}/student/{{ $studium->id }}">{{ $studium->name }}</a>
+            <a href="/inserate/filter/{{ $art }}/student/{{ $studium->id }}" class="btn btn-default">{{ $studium->name }}</a>
         @endforeach
     @elseif ($role == "schueler")
         @foreach ($schulfaecher as $fach)
-            <a href="/inserate/filter/{{ $art }}/schueler/{{ $fach->id }}">{{ $fach->name }}</a>
+            <a href="/inserate/filter/{{ $art }}/schueler/{{ $fach->id }}" class="btn btn-default">{{ $fach->name }}</a>
         @endforeach
     @endif
     </div><br>
 
 
     @forelse ($inserate as $inserat)
-        <div class="inserate_list">
+        <div class="inserate-list">
         @if ($inserat->art == 0)
             Suche Tutor: 
         @elseif ($inserat->art == 1)
             Biete Tutor:
         @endif
-        <a href="/inserate/{{ $inserat->id }}">{{ $inserat->title }}</a> (Erstellt: {{ $inserat->created_at }})
+        <a href="/inserate/{{ $inserat->id }}">{{ $inserat->title }}</a>
         <hr>
         {!! str_limit(nl2br(e($inserat->body)), 300) !!}
         <br>
-        von: {{ $inserat->user->name }}<br>Kategorien: 
+        von: {{ $inserat->user->name }} (Erstellt: {{ $inserat->created_at }})<br>Kategorien: 
         @foreach ($inserat->studiengaenge as $studium)
             {{ $studium->name }}
         @endforeach

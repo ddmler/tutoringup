@@ -11,6 +11,6 @@
     @endif
 
     <a href="inserate/" class="btn btn-primary btn-lg">Inserate</a>
-    <a href="altklausuren/" class="btn btn-default btn-lg">Altklausuren</a>
+    <a href="altklausuren/" class="btn btn-primary btn-lg">Altklausuren</a>
 </div>
 @endsection
