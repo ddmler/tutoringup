@@ -21,7 +21,7 @@
         <input type="text" class="form-control" name="title" id="title" placeholder="Ein aussagekräftiger Titel" value="{{ old('title') }}" required>
       </div>
       <div class="form-group">
-        <label for="upload_file">Datei</label>
+        <label for="upload_file">Hochzuladende Datei</label>
         <input type="file" name="upload_file" id="upload_file"></input>
       </div>
       <button type="submit" class="btn btn-primary">Altklausur hochladen</button>
