@@ -13,7 +13,7 @@
         @elseif ($inserat->art == 1)
             Biete Tutor:
         @endif
-        <a href="/inserate/{{ $inserat->id }}">{{ $inserat->title }}</a> (Erstellt: {{ $inserat->created_at }})
+        <a href="/inserate/{{ $inserat->id }}">{{ $inserat->title }}</a> (Erstellt: {{ Carbon\Carbon::parse($inserat->created_at)->format('d.m.Y H:i') }})
         <hr>
         {!! str_limit(nl2br(e($inserat->body)), 300) !!}
         <br>

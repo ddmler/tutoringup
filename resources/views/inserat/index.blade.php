@@ -49,7 +49,7 @@
         <hr>
         {!! str_limit(nl2br(e($inserat->body)), 300) !!}
         <br>
-        von: {{ $inserat->user->name }} (Erstellt: {{ $inserat->created_at }})<br>Kategorien: 
+        von: {{ $inserat->user->name }} (Erstellt: {{ Carbon\Carbon::parse($inserat->created_at)->format('d.m.Y H:i') }})<br>Kategorien: 
         @foreach ($inserat->studiengaenge as $studium)
             {{ $studium->name }}
         @endforeach
