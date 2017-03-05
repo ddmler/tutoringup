@@ -8,7 +8,7 @@
  
     @if ($subject)
         Aktueller Filter:
-        {{ $studium[$subject-1]->name }}
+        <a href="/altklausuren/">{{ $studium[$subject-1]->name }}</a>
     @endif
 
     <div class="filter_list">
