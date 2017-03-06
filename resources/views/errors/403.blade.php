@@ -6,9 +6,7 @@
 <div class="panel-body">
 
 <div class="alert alert-danger">
-  <ul>
-    <li>Du hast keine Berechtigung diese Aktion durchzuführen.</li>
-  </ul>
+	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Fehler: Du hast keine Berechtigung diese Aktion durchzuführen.
 </div>
 </div>
 @endsection

@@ -6,9 +6,7 @@
 <div class="panel-body">
 
 <div class="alert alert-danger">
-  <ul>
-    <li>Die von dir gesuchte Seite wurde nicht gefunden.</li>
-  </ul>
+	<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Fehler: Die von dir gesuchte Seite wurde nicht gefunden.
 </div>
 </div>
 @endsection

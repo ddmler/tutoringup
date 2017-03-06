@@ -15,7 +15,7 @@
             <form method="POST" action="{{ $upload->id }}">
             {{ csrf_field() }}
             {{ method_field('DELETE') }}
-            <input type="submit" class="btn btn-danger" value="Löschen">
+            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Löschen</button>
         </form>
         </div>
     @empty
