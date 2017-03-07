@@ -3,12 +3,19 @@ language: php
 php:
   - 7.0
   - 7.1
-        
-sudo: false
 
-install:
-  - composer self-update --quiet
-  - COMPOSER_DISCARD_CHANGES=true composer --prefer-source update --no-interaction --no-progress
+before_script:
+  - phpenv config-rm xdebug.ini
+  - cp .env.travis .env
+  - mysql -e 'create database tutoringup_test;'
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan migrate
+  - php artisan db:seed
 
 script:
-  - vendor/bin/phpunit --testsuite "Unit Tests"
+  - vendor/bin/phpunit
+
+services:
+  - mysql
