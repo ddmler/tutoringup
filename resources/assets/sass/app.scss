@@ -47,3 +47,15 @@ body {
 	background-repeat: no-repeat;
 	background-color: #ffffff;
 }
+
+.home-flex {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.home-flex > .btn {
+	padding: 20px 40px;
+	margin-top: 20px;
+	margin-bottom: 25px;
+}
