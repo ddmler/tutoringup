@@ -54,10 +54,16 @@
                             <li><a href="{{ url('/register') }}">Registrierung</a></li>
                         @else
                             <li>
+                                <a href="{{ url('/inserate') }}">Inserate</a>
+                            </li>
+                            <li>
                                 <a href="{{ url('/inserate/create') }}">Neues Inserat</a>
                             </li>
                             <li>
                                 <a href="{{ url('/inserate/own') }}">Eigene Inserate</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/altklausuren') }}">Altklausuren</a>
                             </li>
                             <li>
                                 <a href="{{ url('/altklausuren/create') }}">Neue Altklausur</a>
@@ -67,7 +73,7 @@
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                	<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+                                	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -76,7 +82,7 @@
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span> 
+                                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                                             Logout
                                         </a>
 

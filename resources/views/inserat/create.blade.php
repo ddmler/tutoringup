@@ -7,6 +7,10 @@
 
   @include('layouts.error')
 
+  <div class="alert alert-info">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Mehrfachauswahl ist bei Kategorien möglich.
+  </div>
+
     <form method="POST" action="/inserate">
       {{ csrf_field() }}
       <div class="form-group">

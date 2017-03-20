@@ -6,10 +6,14 @@
 <div class="panel-body">
     @include('layouts.success')
 
+    <div class="alert alert-info">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Eigene Inserate werden automatisch nach 1 Monat gelöscht.
+    </div>
+
     @forelse ($inserate as $inserat)
         <div class="inserate-list">
         @if ($inserat->art == 0)
-            Suche Tutor: 
+            Suche Tutor:
         @elseif ($inserat->art == 1)
             Biete Tutor:
         @endif
@@ -17,7 +21,7 @@
         <hr>
         {!! str_limit(nl2br(e($inserat->body)), 300) !!}
         <br>
-        von: {{ $inserat->user->name }}<br>Kategorien: 
+        von: {{ $inserat->user->name }}<br>Kategorien:
         @foreach ($inserat->studiengaenge as $studium)
             {{ $studium->name }}
         @endforeach

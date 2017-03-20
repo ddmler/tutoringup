@@ -7,6 +7,10 @@
 
   @include('layouts.error')
 
+  <div class="alert alert-info">
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Mehrfachauswahl ist bei Kategorien möglich.
+  </div>
+
     <form method="POST" action="/altklausuren" enctype="multipart/form-data">
       {{ csrf_field() }}
       <div class="form-group">
@@ -23,6 +27,7 @@
       <div class="form-group">
         <label for="upload_file">Hochzuladende Datei</label>
         <input type="file" name="upload_file" id="upload_file"></input>
+        <p class="help_block">Erlaubte Dateiformate: PDF, JPEG, PNG</p>
       </div>
       <button type="submit" class="btn btn-primary">Altklausur hochladen</button>
     </form>
