@@ -110,8 +110,8 @@ class ExampleTest extends TestCase
         $response = $this->actingAs($user)->get('/inserate/2/edit'); // try to edit a post belonging to another user
 
         $response->assertStatus(403);
-        $response->assertSee("Fehler"); // error
-    }    
+        $response->assertSee("Fehler 403"); // error
+    }
 
     public function testCreateAltklausur()
     {
@@ -131,5 +131,13 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee("(JPG)"); // first result
+    }
+
+    public function testPageNotFound()
+    {
+        $response = $this->get('/inserate/100');
+
+        $response->assertStatus(404);
+        $response->assertSee("Fehler 404"); // error msg
     }
 }
