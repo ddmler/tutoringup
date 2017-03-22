@@ -20,13 +20,13 @@
         <a href="/inserate/{{ $inserat->id }}">{{ $inserat->title }}</a> (Erstellt: {{ Carbon\Carbon::parse($inserat->created_at)->format('d.m.Y H:i') }})
         <hr>
         {!! str_limit(nl2br(e($inserat->body)), 300) !!}
-        <br>
+        <hr>
         von: {{ $inserat->user->name }}<br>Kategorien:
         @foreach ($inserat->studiengaenge as $studium)
-            {{ $studium->name }}
+            <span class="label label-primary">{{ $studium->name }}</span>
         @endforeach
         @foreach ($inserat->schulfaecher as $fach)
-            {{ $fach->name }}
+            <span class="label label-primary">{{ $fach->name }}</span>
         @endforeach
         <br>
         <a href="{{ $inserat->id }}/edit" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Bearbeiten</a>
