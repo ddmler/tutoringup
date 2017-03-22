@@ -24,7 +24,7 @@
         </td>
         <td>
             @foreach ($upload->studiengaenge as $studium)
-                <a href="/altklausuren/{{ $studium->id }}" class="label label-primary">{{ $studium->name }}</a>
+                <span class="label label-primary">{{ $studium->name }}</span>
             @endforeach
         </td>
         <td>

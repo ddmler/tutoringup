@@ -48,7 +48,7 @@
         <a href="/inserate/{{ $inserat->id }}">{{ $inserat->title }}</a>
         <hr>
         {!! str_limit(nl2br(e($inserat->body)), 300) !!}
-        <br>
+        <hr>
         von: {{ $inserat->user->name }} (Erstellt: {{ Carbon\Carbon::parse($inserat->created_at)->format('d.m.Y H:i') }})<br>Kategorien:
         @foreach ($inserat->studiengaenge as $studium)
             <span class="label label-primary">{{ $studium->name }}</span>
