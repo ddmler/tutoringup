@@ -1,21 +1,27 @@
 language: php
 
 php:
-  - 7.0
-  - 7.1
+- 7.0
+- 7.1
 
 before_script:
-  - phpenv config-rm xdebug.ini
-  - cp .env.travis .env
-  - mysql -e 'create database tutoringup_test;'
-  - composer self-update
-  - composer install --no-interaction
-  - php artisan key:generate
-  - php artisan migrate
-  - php artisan db:seed
+- phpenv config-rm xdebug.ini
+- cp .env.travis .env
+- mysql -e 'create database tutoringup_test;'
+- composer self-update
+- composer install --no-interaction
+- php artisan key:generate
+- php artisan migrate
+- php artisan db:seed
 
 script:
-  - vendor/bin/phpunit
+- vendor/bin/phpunit
 
 services:
-  - mysql
+- mysql
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: l92erYktjkDv+Rc8N79dvq8vT+g9GEI/wTJGOp7RhM9s1LhV4hk8eBJQ1W+/YMT3a7pbpgGIubms70gQ+3iYEivhrY4Wpe8Ty8Vzq7+7aUehtOJ2Kbi74q2OCXXDIbNcjLzoH99z6wbOGMzHTXt0aLlGawyE3sBfexmVpqXOZwH/0EqCR92lx3d2xCPVHEnYgDUcyOX+gVO79CPWd/T/E9ECRVjM0XCJkIQjWNzoi/SpS+g1mH1d3W4VG1/A+h0VnHP7nJ341nsLdnt/HRjLze5J20bJKqS3Z3PmclikMwtm6MNYhKcwsmp4vbeNTKXci+lHSTsQaZ56yUNlTXwVkvCQ15JI0s1mvgZFjJDBZL5QqX9g1UnhT5BB118lHj978OodnVql0cqQIxZAGB37oVZnakvbgETJbIIIIe/718NhfJlewPBpf6DhflsNg1wcn6BTAp4QT+jIRSI1DgvXErP7t2YYjVKTxAugMtjle8vP3frEVPeE+IC16oVBsCE/0YuJIDVmV3c6dF1AMvCR/mJkJ6BcqZgIxH3cXhrwhlSohEULehSmAnGQEotci85yPmbMjGoVZaiLP49g8CRWttAepGbD7mE8RNtRFE8NAsAlgrmYCLiuj6/VZAG3l1dpZK/qK4lmfgIlKhZeQCLcLlX8Q8CIjbtSYf4gPuuiw80=
+  app: tutoringup
