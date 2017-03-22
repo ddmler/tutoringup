@@ -62,7 +62,7 @@ class ExampleTest extends TestCase
         $response = $this->get('/altklausuren');
 
         $response->assertStatus(200);
-        $response->assertSee("(PNG)"); // from a result
+        $response->assertSee("PNG"); // from a result
     }
 
     public function testAltklausurenFilter()
@@ -70,7 +70,7 @@ class ExampleTest extends TestCase
         $response = $this->get('/altklausuren/1');
 
         $response->assertStatus(200);
-        $response->assertSee("(JPG)"); // from a result
+        $response->assertSee("JPG"); // from a result
     }
 
     public function testCreateInserat()
@@ -130,7 +130,7 @@ class ExampleTest extends TestCase
         $response = $this->actingAs($user)->get('/altklausuren/own');
 
         $response->assertStatus(200);
-        $response->assertSee("(JPG)"); // first result
+        $response->assertSee("JPG"); // first result
     }
 
     public function testPageNotFound()
