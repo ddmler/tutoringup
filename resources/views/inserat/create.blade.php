@@ -8,7 +8,7 @@
   @include('layouts.error')
 
   <div class="alert alert-info">
-    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Mehrfachauswahl ist bei Kategorien möglich. Vergess nicht im Inhalt mit anzugeben, wie dich Interessierte kontaktieren sollen.
+    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Mehrfachauswahl ist bei Kategorien möglich. Vergiss nicht im Inhalt mit anzugeben, wie dich Interessierte kontaktieren sollen.
   </div>
 
     <form method="POST" action="/inserate">

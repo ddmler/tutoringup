@@ -3,10 +3,14 @@
 @section('content')
 </div></div></div></div>
 
+<div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+
 <div class="homepage">
 
     <br>
-    <img src="homepage.jpg" class="homepage-img img-rounded">
+    <img src="homepage.jpg" class="img-responsive img-rounded">
 
     @if (session('status'))
         <div class="alert alert-success">
@@ -33,6 +37,9 @@
 
     Image (edited) &copy; <a href="https://www.flickr.com/photos/francisco_osorio/9513731734">Francisco Osorio</a>
 
+</div>
+</div>
+</div>
 </div>
 
 <div><div><div><div>
