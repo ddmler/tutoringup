@@ -22,7 +22,7 @@
 
     Deine Seite für Nachhilfe allerart - Suchst du Nachhilfe für dein Studium oder die Schule? Dann bist du bei Tutoring.UP genau richtig.
     Im Gegensatz zu anderen Nachhilfe-Websites findest du hier nicht nur Tutoren, die Schüler unterstützen, sondern auch jene, die dir im Studium helfen.
-    Dabei kannst du dir die jeweilige Fakultät deines Studienganges auswählen, um einen passenden Tutor zu finden oder eine Nachhilfe-Anfrage zu starten.
+    Dabei kannst du dir deinen Studienganges auswählen, um einen passenden Tutor zu finden oder eine Nachhilfe-Anfrage zu starten.
 
     <hr>
 
