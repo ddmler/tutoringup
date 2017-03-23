@@ -35,8 +35,9 @@
                     </button>
 
                     <!-- Branding Image -->
+                    <a href="https://uni-potsdam.de/" target="_blank"><img src="/uni_logo.png" width="40" height="40" class="up-logo"></a>
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <span class="glyphicon glyphicon-education" aria-hidden="true"></span> {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
 

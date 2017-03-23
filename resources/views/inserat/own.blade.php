@@ -28,13 +28,14 @@
         @foreach ($inserat->schulfaecher as $fach)
             <span class="label label-primary">{{ $fach->name }}</span>
         @endforeach
-        <br>
+        <br><div class="inserate-own-buttons">
         <a href="{{ $inserat->id }}/edit" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Bearbeiten</a>
-        <form class="delete-button" method="POST" action="{{ $inserat->id }}">
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
-            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Löschen</button>
-        </form>
+            <form class="delete-button" method="POST" action="{{ $inserat->id }}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Löschen</button>
+            </form>
+        </div>
         </div>
     @empty
         <p>Keine eigenen Inserate vorhanden.</p>
