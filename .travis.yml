@@ -7,7 +7,7 @@ php:
 before_script:
 - phpenv config-rm xdebug.ini
 - cp .env.travis .env
-- mysql -e 'create database tutoringup_test;'
+- psql -c 'create database tutoringup_test;' -U postgres
 - composer self-update
 - composer install --no-interaction
 - php artisan key:generate
@@ -18,7 +18,7 @@ script:
 - vendor/bin/phpunit
 
 services:
-- mysql
+- postgresql
 
 deploy:
   provider: heroku

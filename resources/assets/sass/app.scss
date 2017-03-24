@@ -8,20 +8,8 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
-.navbar-default .navbar-brand {
-	color: #003f60;
-}
-
-.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-	color: #003f60;
-}
-
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-	color: #003f60;
-}
-
-.navbar-default .navbar-nav > li > a {
-	color: #003f60;
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus , .navbar-default .navbar-nav > li > a {
+	color: $brand-primary;
 }
 
 .inserate-list {
@@ -46,6 +34,7 @@ body {
 	background: linear-gradient(to bottom, #ededed 0%, #ededed 50px, #ffffff 100%);
 	background-repeat: no-repeat;
 	background-color: #ffffff;
+	padding-bottom: 40px;
 }
 
 .home-flex {
