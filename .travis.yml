@@ -22,3 +22,4 @@ deploy:
   app: tutoringup
   on:
     repo: ddmler/tutoringup
+    php: 7.1
