@@ -20,6 +20,7 @@ deploy:
   api_key:
     secure: C2ocblf0G9knJtZR1yFWVHjzeM5QytzkjBZCmnxQVeB3uuU9KGP1I3LLQ/wYlz8O1E44V2HwuhvwMdWQXQEplZ8R3+shw/3/3FQLeaN2ckfraBm24jPAOjHba3deLJbjvgx6fAZgZGjaJwXradww6rG2ASQaJ+b89jNszvoiCLSRjyUYvzf9IkB+3I7+m2VSeGnDxo/HRaSeEbC0ToNUBBQEwyI/3OGF+15vJsXhGGOfnHXZaXyr2rJEX5LVhRxe7Oq2XvFHHXYMStbn6I+ReOgPOBKac9nI2ZgxPPoTx6l1CQMhzJuw5EfIVaZf2iwPLHCZNbmE5hb3n0LJArCHZfvT44fbFXyedzKU0b1Mgedgv9zCUgJEX9gLBYn49nEe9IXxqDQ8aEvEARqZKXl2hBjbF3gucLH2wkaUjHBhqij4HmL5wiUTVXGfzT89lx6jRmWRRiOWRgltC9LtkXB2/7tUpPWiqLAz0/YDIpaw/AYbBPrNmWrNa9IyQnZMmmhyJwf4mblSkKXDnnZSQYK4n+vyEn4b0Qh2Wi1c8OISGencgyZUNRR9RZ+4r9UeUj+SMZoZo+VoDsSDWItCoIr8FM0LdRla6QosWHEAGQoj6k9Rj6NtUuL2Nqrwxxa9EYo+z0sRIRxZHM0r5nTSV1MGjhW1Bx92NK/KlemzKlW0Yec=
   app: tutoringup
+  skip_cleanup: true
   on:
     repo: ddmler/tutoringup
     php: 7.1
